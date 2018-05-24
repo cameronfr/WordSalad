@@ -1,0 +1,10 @@
+#Dockerfile this?
+
+yarn init
+yarn add react react-dom
+yarn add babel-cli babel-preset-env babel-preset-react --dev
+echo '{ "presets": ["react","env"] }' > .babelrc
+git init .
+echo 'dist/\nnode_modules' > .gitignore
+mkdir dist src
+yarn add webpack webpack-cli webpack-dev-server style-loader css-loader
