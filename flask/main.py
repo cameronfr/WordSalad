@@ -1,13 +1,14 @@
-from flask import Flask
-app = Flask(__name__)
+from flask import Flask, send_from_directory
+import logging
+app = Flask(__name__, static_folder="../static", static_url_path="/static")
+#On production server, nginx will serve /static. Be careful with trailing / for folder specification.
 
 
 @app.route("/")
-def hello():
-    return "Hello World from Flask in a uWSGI Nginx Docker container with \
-     Python 3.6 (from the example template)"
+def index():
+    return send_from_directory("../public/", "index.html")
 
-
+# On production server, nginx will serve this.
+# For debugging server
 if __name__ == "__main__":
-    # Only for debugging while developing
     app.run(host='0.0.0.0', debug=True, port=80)

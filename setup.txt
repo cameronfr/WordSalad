@@ -20,4 +20,7 @@ yarn add less --dev
 
 #see dockerfile, docker-compose
 #docker-compose -f docker-compose.yml -f docker-compose.dev.yml up for DEV mode -- second config has stuff that overrides first
+#run yarn server with: yarn server. Build static files with: yarn build.
 #docker-compose up or docker-compose -f docker-compose.yml up for production
+#next time maybe have custom nginx config to serve /dist, & have flask server fallback
+#to serving it.
