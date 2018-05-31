@@ -1,10 +1,23 @@
 #Dockerfile this?
 
+
+#Frontend Setup
+
 yarn init
 yarn add react react-dom
-yarn add babel-cli babel-preset-env babel-preset-react --dev
+yarn add babel-cli babel-loader babel-preset-env babel-preset-react --dev
 echo '{ "presets": ["react","env"] }' > .babelrc
 git init .
 echo 'dist/\nnode_modules' > .gitignore
 mkdir dist src
 yarn add webpack webpack-cli webpack-dev-server style-loader css-loader
+#also see package.json and webpack.config.js for config setups.
+yarn add less --dev
+
+#see package.json for scripts we've setup.
+
+#Backend Setup
+
+#see dockerfile, docker-compose
+#docker-compose -f docker-compose.yml -f docker-compose.dev.yml up for DEV mode -- second config has stuff that overrides first
+#docker-compose up or docker-compose -f docker-compose.yml up for production
