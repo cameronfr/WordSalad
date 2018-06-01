@@ -1,6 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
-const bundlePath = path.resolve(__dirname, "static/");
+const bundlePath = path.resolve(__dirname, "static");
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require("compression-webpack-plugin")
 
 module.exports = {
   entry: "./src/index.js",
@@ -14,12 +16,19 @@ module.exports = {
       },
       {
         test: /\.(css|less)$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: [{
+          loader:'style-loader',
+        }, {
+          loader:'css-loader', options: {minimize: true},
+        }, {
+          loader:'less-loader'
+        }]
       }
     ]
   },
   resolve: { extensions: ['*', '.js', '.jsx'] },
   output: {
+    path: bundlePath,
     publicPath: bundlePath,
     filename: "bundle.js"
   },
@@ -28,5 +37,10 @@ module.exports = {
     port: 3000,
     publicPath: "http://localhost:3000/static"
   },
-  plugins: [ new webpack.HotModuleReplacementPlugin() ]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    //new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+    //new BundleAnalyzerPlugin(),
+    //new CompressionPlugin(),
+   ]
 };

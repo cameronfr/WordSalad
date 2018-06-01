@@ -4,12 +4,12 @@
   //we're getting here in the tradiional way.
   //label after uk-grid loses proper color/style, for some reason
 import UIkit from 'uikit';
-import Icons from 'uikit/dist/js/uikit-icons';
+// import Icons from 'uikit/dist/js/uikit-icons';
 import './theme.less'
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-UIkit.use(Icons);
+// UIkit.use(Icons);
 
 var SiteText = {
   mainDescriptionText: "Evolve your text blah blah ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
@@ -22,8 +22,10 @@ class App extends React.Component{
   }
   render () {
     return (
-      <div className="uk-container uk-container-expand uk-height-1-1">
-        <div className="uk-container uk-container-small">
+      <div className="uk-container uk-height-1-1 uk-padding-remove">
+      <div className="uk-container uk-margin-top uk-visible@m"></div>
+      <div className="uk-grid uk-flex-center uk-height-1-1" uk-grid="true">
+        <div className="uk-width-1-1" style={{maxWidth:"960px"}}>
           <div className="uk-card uk-card-small uk-card-body uk-card-secondary uk-border-rounded" style={{marginBottom: "-5px"}}>
               <h1 >{SiteText.titleText}</h1>
           </div>
@@ -49,6 +51,7 @@ class App extends React.Component{
             </div>
           </div>
         </div>
+      </div>
       </div>
     )
   }
@@ -112,7 +115,7 @@ class AdvancedBar extends React.Component{
     return (
       <div className="uk-card">
         <h5 className="uk-text-left uk-text-bold">Advanced</h5>
-        <div className="uk-card uk-card-small uk-card-primary uk-border-rounded uk-width-1-1 uk-padding-small ">
+        <div className="uk-card uk-card-small uk-card-primary  uk-width-1-1 uk-padding-small ">
           <div uk-grid="true" className="uk-grid-small uk-flex-center uk-flex">
             <div className="uk-width-1-1@s uk-width-1-2">
               <ParamCard name={"NOVELTY"} onChange={this.sliderChange} value={this.state.NOVELTY} range={[0.0, 1.0, 0.2]} decPlace={1}/>

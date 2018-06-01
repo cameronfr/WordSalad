@@ -1,6 +1,7 @@
 from flask import Flask, send_from_directory
-import logging
 app = Flask(__name__, static_folder="../static", static_url_path="/static")
+from .VectorTosser import WordVectorUtility
+import logging
 #On production server, nginx will serve /static. Be careful with trailing / for folder specification.
 
 
