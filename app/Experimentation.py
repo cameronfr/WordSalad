@@ -68,7 +68,8 @@ class WordVectorUtility:
         return passed
 
 
-vectorUtil = WordVectorUtility("/Users/cameronfranz/NoSync/glove.6B/glove.840B.300d.txt")
+vectorUtil = WordVectorUtility("/Users/cameronfranz/NoSync/glove.6B/glove.6B.50d.txt")
+vectorUtil2 = vectorUtil
 vectorUtil.basicTest()
 #Update instance methods w/o having to remake class -- just REPL new method into global scope first
 vectorUtil.basicTest = basicTest.__get__(vectorUtil, WordVectorUtility)

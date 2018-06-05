@@ -25,3 +25,12 @@ yarn add less --dev
 #next time maybe have custom nginx config to serve "/dist" instead of "/static", & have flask server fallback
 #to serving it.
 #also should configure nginx to serve .gz versions of files.
+#use requirements.txt and RUN pip install line immediately after to prevent docker cache invalidation
+
+#Server
+
+# see http://christopher5106.github.io/continous/deployment/2016/05/11/google-appengine-is-simply-brillant-tutorial.html
+# essentially is app.yml "gloud app deploy app.yml"
+# data is such that a startup script will download the data if there is none
+# in the data directory. So use the dev docker-compose which will mount this folder
+# which has data as a volume.

@@ -1,12 +1,21 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.6
 
 WORKDIR /app
+
+COPY ./requirements.txt ./
+RUN pip3 install -r requirements.txt
+
+RUN apt-get update
+RUN apt-get -y install unzip wget ca-certificates
+
 COPY ./static ./static
 COPY ./app ./app
 COPY ./public ./public
 COPY ./uwsgi.ini ./
+COPY ./prestart.sh ./
 
 ENV STATIC_PATH /app/static/
 
-RUN pip3 install numpy torch torchvision tqdm sklearn
-RUN pip3 install scipy
+#for Google AppEngine
+ENV LISTEN_PORT 8080
+EXPOSE 8080

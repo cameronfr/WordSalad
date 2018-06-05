@@ -1,0 +1,11 @@
+runtime: custom
+env: flex
+skip_files:
+- data/
+
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 1.6
+  disk_size_gb: 10
