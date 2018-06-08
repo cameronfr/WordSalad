@@ -9,7 +9,7 @@ class WordVectorUtility:
         self.wordDict, self.vecMatrix = self.loadVectorFile(filePath )
         self.normMatrix = np.sqrt(np.sum(self.vecMatrix**2,axis=1))
         self.revWordDict = {v: k for k,v in enumerate(self.wordDict)}
-        
+
     def loadVectorFile(self, filePath):
         print("Getting vector count and dims")
         gFile = open(filePath, encoding="utf-8")
@@ -49,13 +49,19 @@ class WordVectorUtility:
         list = self.closestVecIndexesToVec(sumVec)
         return list
 
+    def inWordDict(self, word):
+        return (word in self.revWordDict.keys())
+
     def vecIndexesToWords(self, indexes):
         list = np.apply_along_axis(np.vectorize(lambda i: self.wordDict[i]), 0, indexes)
         return list
 
     def closestWords(self, wordList, num):
         indexes = self.closestVecIndexesToWords(wordList)
-        return self.vecIndexesToWords(indexes[:num])
+        list = self.vecIndexesToWords(indexes[:num + 1])
+        for word in wordList:
+            list = np.delete(list, np.where(list==word))
+        return list
 
     def basicTest(self):
         indexes = np.random.randint(0, self.vecMatrix.shape[1], 10)
@@ -63,3 +69,8 @@ class WordVectorUtility:
         for i in indexes:
             passed = passed and (self.wordDict[i] == self.wordDict[self.closestVecIndexesToVec(self.vecMatrix[i])[0]])
         return passed
+
+#
+# import numpy as np
+# a =np.array(["testing","123"])
+# np.delete(a, np.where(a=="1234"))

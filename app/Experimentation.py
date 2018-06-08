@@ -68,7 +68,10 @@ class WordVectorUtility:
         return passed
 
 
-vectorUtil = WordVectorUtility("/Users/cameronfranz/NoSync/glove.6B/glove.6B.50d.txt")
+#this is the dir flask will be in
+os.chdir("/Users/cameronfranz/Documents/Learning/Projects/Intuitive Ventures/UXAI/app/")
+vectorUtil = WordVectorUtility("../data/glove.6B.50d.txt")
+vectorUtil = WordVectorUtility("/Users/cameronfranz/NoSync/glove.6B/glove.twitter.27B.200d.txt")
 vectorUtil2 = vectorUtil
 vectorUtil.basicTest()
 #Update instance methods w/o having to remake class -- just REPL new method into global scope first
@@ -96,7 +99,6 @@ vectorUtil.closestWords(["SpaceX"], 15)
 vectorUtil.closestWords(["hungry"], 15)
 vectorUtil.closestWords(["atom","bomb"], 15)
 vectorUtil.closestWords(["insect","Kafka"], 15)
-vectorUtil.closestWords(["brown"], 15)
 
 #can see that if have word/context "forest" and want to replace word "walking", that of these 3 "hiking" is clearly most coherent.
 vectorUtil.closestWords(["walking"], 15)
