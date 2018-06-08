@@ -20,9 +20,17 @@ import ReactDOM from 'react-dom';
 // UIkit.use(Icons);
 
 var SiteText = {
-  mainDescriptionText: "Evolve your text blah blah ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
+  mainDescriptionText: (
+    <span>
+    <p>Representing words in a sentence as <a target="_blank" className="" href="https://nlp.stanford.edu/projects/glove/">GloVe vectors</a> gives a way of finding meaningfully similar words — the results of this method are like <b>synonyms</b>, but not quite. Instead they're often words that look like they could belong in the given sentence with just a bit of tweaking.</p>
+    <p>Words can be swapped by clicking them; the new sentence can be returned to the search bar by clicking the words in dark gray. Increase <b>novelty</b> to get less similar but possibly more interesting results, increase <b>results</b> to get more words.</p>
+    </span>
+    ),
   titleText: "Word Salad"
 }
+
+// var apiServer = "http://192.168.2.113:8080"
+var apiServer = ""
 
 var sentences = [
   "The quick brown fox jumped over the lazy dog",
@@ -85,7 +93,7 @@ class App extends React.Component{
     e.preventDefault()
     if (!this.state.waiting) {
       this.setState({waiting: true, success: false})
-      fetch("http://192.168.2.113:8080/api/words?query="+this.state.searchText+"&num="+this.state.paramNum+"&nov="+this.state.paramNov)
+      fetch(apiServer + "/api/words?query="+this.state.searchText+"&num="+this.state.paramNum+"&nov="+this.state.paramNov)
         .then( response => {
           if (response.status != 200) {
             this.setState({success: false, error: "Server returned status " + response.status, waiting: false})
@@ -117,17 +125,22 @@ class App extends React.Component{
 
   render () {
     return (
-      <div className="uk-container uk-padding-remove">
+      <div className="uk-container uk-padding-remove" style={{maxWidth:"930px"}}>
       <div className="uk-container uk-margin-top uk-visible@m"></div>
       <div className="uk-grid uk-flex-center" uk-grid="true">
-        <div className="uk-width-1-1" style={{maxWidth:"960px"}}>
-          <div className="uk-card uk-card-small uk-card-body uk-card-secondary uk-border-rounded" style={{marginBottom: "-5px"}}>
-              <h1 >{SiteText.titleText}</h1>
+        <div className="uk-width-1-1">
+          <div className="uk-card uk-card-small uk-card-body uk-card-secondary uk-border-rounded uk-visible@m" style={{marginBottom: "-5px"}}>
+              <h1 className="uk-margin-remove uk-heading-primary">{SiteText.titleText}</h1>
+              <h3 className="uk-text-muted uk-margin-remove" style={{paddingLeft: "6px"}}>mix your words</h3>
           </div>
-          <div className="uk-card uk-card-body uk-card-default">
+          <div className="uk-card uk-card-small uk-card-body uk-card-secondary uk-hidden@m" style={{marginBottom: "-5px"}}>
+              <h1 className="uk-margin-remove uk-heading-primary">{SiteText.titleText}</h1>
+              <h3 className="uk-text-muted uk-margin-remove" style={{paddingLeft: "6px"}}>mix your words</h3>
+          </div>
+          <div className="uk-card uk-card-body uk-card-default" >
             <div id="titleSection" className="uk-card" >
               <div className="uk-card uk-card-small uk-border-rounded">
-              <p >{SiteText.mainDescriptionText}</p>
+              {SiteText.mainDescriptionText}
               </div>
             </div>
             <div className="uk-grid-small uk-text-center uk-flex-top uk-flex-wrap " ref={this.gridRef} uk-grid="masonry:true">
@@ -148,7 +161,10 @@ class App extends React.Component{
                 <ResultsSection results={this.state.results} onMainClick={this.copySentence} onListClick={this.wordSwapping}/>
               </div>
               <div className="uk-width-1-4@s">
-                  <div className="uk-card uk-card-small uk-card-secondary uk-card-body uk-width-1-1">Testing box # 2 Testing box # 2 Testing box # 2 </div>
+                  <div className="uk-card uk-card-small uk-card-secondary uk-card-body uk-width-1-1 uk-border-rounded">
+                    Built with <a  target="_blank" href="https://getuikit.com/">UIKit</a>, <a target="_blank"  href="https://reactjs.org/">React</a>, <a target="_blank"  href="http://flask.pocoo.org/">Flask</a>, <a target="_blank"  href="https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask/">Docker</a>, and <a target="_blank"  href="https://nlp.stanford.edu/projects/glove/" >GloVe</a>.
+                    Follow me on <a  target="_blank" href="https://twitter.com/hollowayaegis">Twitter</a> for more things.
+                  </div>
               </div>
             </div>
           </div>
@@ -211,7 +227,7 @@ class AdvancedBar extends React.Component{
 
 function ParamCard(props) {
   return (
-    <div className="uk-card uk-card-default uk-card-body uk-border-rounded uk-box-shadow-small uk-width-1-1" style={{padding: "4px"}}>
+    <div className="uk-card uk-card-default uk-card-body uk-border-rounded uk-box-shadow-medium uk-width-1-1" style={{padding: "4px"}/*, border: "1px solid #222"}*/}>
     <form>
       <div>
         <span className="uk-text-center" ><b>{props.name}</b>&nbsp;
@@ -233,7 +249,7 @@ class ResultsSection extends React.Component{
     return (
     <div className="uk-section uk-section-primary uk-padding-small uk-preserve-color">
       {this.props.results.length == 0 && (
-        <div className="uk-card uk-card-default uk-card-body">
+        <div className="uk-card uk-card-default uk-card-body uk-border-rounded">
           <b>RESULTS</b>
         </div>
       )}

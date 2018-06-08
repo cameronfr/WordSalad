@@ -18,7 +18,7 @@ COPY ./prestart.sh ./
 ENV STATIC_PATH /app/static/
 ENV NGINX_WORKER_PROCESSES auto
 
-ENV FLASK_DEBUG 1
+# ENV FLASK_DEBUG 1
 
 #for Google AppEngine
 ENV LISTEN_PORT 8080

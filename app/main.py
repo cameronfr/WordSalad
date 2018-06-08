@@ -9,6 +9,7 @@ import numpy as np
 #On production server, nginx will serve /static. Be careful with trailing / for folder specification -- don't use.
 app = Flask(__name__, static_folder="../static", static_url_path="/static")
 if app.debug:
+    app.logger.info("Debug detected, enabling CORS for * origins")
     from flask_cors import CORS
     cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 

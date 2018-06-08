@@ -15,6 +15,7 @@ yarn add webpack webpack-cli webpack-dev-server style-loader css-loader
 yarn add less --dev
 
 #see package.json for scripts we've setup.
+#see index.json header of comments for more frontend stuff
 
 #Backend Setup
 
@@ -34,3 +35,6 @@ yarn add less --dev
 # data is such that a startup script will download the data if there is none
 # in the data directory. So use the dev docker-compose which will mount this folder
 # which has data as a volume.
+# docker stats memory usage is inaccurate.
+# if want consistent testing, make sure in docker preferences on Mac that the CPu count, memory, and swap is the same
+# as on the GAEApp. there's no swap on GAE instances...
