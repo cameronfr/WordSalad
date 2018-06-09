@@ -1,6 +1,16 @@
 #! /usr/bin/env bash
 
 dataUrl="http://nlp.stanford.edu/data/glove.6B.zip"
+# free 5GB bucket on GAE apparently.
+
+
+# hacky, this image doesn't allow you to specify nginx.conf, should use something else next time.
+# or could perform copy in this file
+echo "Patching conf.d/nginx.conf"
+sed -i.bak "4i\\
+        if (\$http_x_forwarded_proto = \"http\") {return 301 https://\$host\$request_uri;}\\" /etc/nginx/conf.d/nginx.conf
+
+cat /etc/nginx/conf.d/nginx.conf
 
 if [ ! -d "./data" ]; then
   echo "No data directory, downloading"

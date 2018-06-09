@@ -38,3 +38,8 @@ yarn add less --dev
 # docker stats memory usage is inaccurate.
 # if want consistent testing, make sure in docker preferences on Mac that the CPu count, memory, and swap is the same
 # as on the GAEApp. there's no swap on GAE instances...
+# be sure to check nameservers and whatnot for domain -- shouldn't take more than 5 min if testing on Google DNS.
+# GAE acts as a load balancer and forwards to nginx headers such as $http_x_forwarded_proto -- client protocol, $http_x_forwarded_for -- client ip
+# to clear service cache and whatnot, service restart not service start
+# there's some sort of cache of / on client not refreshed with Ctrl-Cmdr-R. Prob because it's <1kb.
+# FF focus on Android doesn't have this problem, doesn't automatically choose https so good for testing.
