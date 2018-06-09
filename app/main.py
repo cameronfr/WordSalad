@@ -78,14 +78,14 @@ def getSimilarWords():
         abort(400)
     if query == None or paramNov == None or paramNum == None:
         abort(400)
-    if len(query.split()) > 25 or len(query.split()) == 0:
+    if len(query.split()) == 0:
         abort(400)
     if paramNov < 0 or paramNov > 1:
         abort(400)
     if paramNum > 50:
         abort(400)
 
-    tokens = [x for x in query.split()]
+    tokens = [x for x in query.split()[:30]]
     responseList = []
     searchLength = int(paramNum + 5 * paramNov * paramNum)
     for token in tokens:

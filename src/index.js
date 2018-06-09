@@ -163,7 +163,7 @@ class App extends React.Component{
               <div className="uk-width-1-4@s">
                   <div className="uk-card uk-card-small uk-card-secondary uk-card-body uk-width-1-1 uk-border-rounded">
                     Built with <a  target="_blank" href="https://getuikit.com/">UIKit</a>, <a target="_blank"  href="https://reactjs.org/">React</a>, <a target="_blank"  href="http://flask.pocoo.org/">Flask</a>, <a target="_blank"  href="https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask/">Docker</a>, and <a target="_blank"  href="https://nlp.stanford.edu/projects/glove/" >GloVe</a>.
-                    Follow me on <a  target="_blank" href="https://twitter.com/hollowayaegis">Twitter</a> for more things.
+                    Follow on <a  target="_blank" href="https://twitter.com/hollowayaegis">Twitter</a> for more things.
                   </div>
               </div>
             </div>
