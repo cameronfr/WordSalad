@@ -51,8 +51,8 @@ def getSimilarWords():
     responseList = []
     searchLength = int(paramNum + 5 * paramNov * paramNum)
     for token in tokens:
-        if token in vectorUtil:
-            arr = vectorUtil.most_similar(token, topn=searchLength)
+        if token.lower() in vectorUtil:
+            arr = vectorUtil.most_similar(token.lower(), topn=searchLength)
             idx = np.sort(np.random.choice(searchLength, paramNum, replace=False))
             responseList.append({"word": token, "list":[arr[i][0] for i in idx]})
         else:

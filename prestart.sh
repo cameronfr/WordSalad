@@ -15,7 +15,7 @@ if [ ! -d "./data" ]; then
   echo "No data directory, downloading"
   /bin/sleep 1
   mkdir data && cd data
-  wget -O "data.zip" $dataUrl
+  wget --quiet -O "data.zip" $dataUrl
   unzip data.zip
   /bin/sleep 10
   echo "Sleeping 10s"
