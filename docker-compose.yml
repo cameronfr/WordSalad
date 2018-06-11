@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     volumes:
-      - ./data:/app/data
+      - /Users/cameronfranz/NoSync/glove.6B:/app/data
     ports:
       - "80:80"
       - "8080:8080"

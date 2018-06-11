@@ -70,7 +70,7 @@ class WordVectorUtility:
 
 #this is the dir flask will be in
 os.chdir("/Users/cameronfranz/Documents/Learning/Projects/Intuitive Ventures/UXAI/app/")
-vectorUtil = WordVectorUtility("../data/glove.6B.50d.txt")
+vectorUtil = WordVectorUtility("../data/glove.6B.300d.txt")
 vectorUtil = WordVectorUtility("/Users/cameronfranz/NoSync/glove.6B/glove.twitter.27B.200d.txt")
 vectorUtil2 = vectorUtil
 vectorUtil.basicTest()
@@ -86,7 +86,7 @@ vectorUtil.vecIndexesToWords(vectorUtil.closestVecIndexesToWords(["soft", "squis
 vectorUtil.closestWords(["soft", "squishy", "slimy"], 15)
 vectorUtil.closestWords(["confused"], 15)
 vectorUtil.closestWords(["soft", "squishy"], 10)
-vectorUtil.closestWords(["quick", "brown", "fox"], 30)
+vectorUtil.closestWords(["brown", "fox"], 30)
 vectorUtil.closestWords(["companies", "programs"], 30) # => "opportunities", which is useful
 vectorUtil.closestWords(["sow"], 30)
 vectorUtil.closestWords(["bee","movie"], 10)

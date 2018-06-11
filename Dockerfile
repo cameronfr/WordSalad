@@ -2,11 +2,12 @@ FROM tiangolo/uwsgi-nginx-flask:python3.6
 
 WORKDIR /app
 
+RUN apt-get update
+RUN apt-get -y install ca-certificates
 COPY ./requirements.txt ./
 RUN pip3 install -r requirements.txt
 
-RUN apt-get update
-RUN apt-get -y install unzip wget ca-certificates
+RUN apt-get -y install unzip wget
 RUN pip3 install flask-cors
 
 COPY ./static ./static

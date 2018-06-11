@@ -1,9 +1,8 @@
-version: '2'
+version: '3'
 services:
   web:
     volumes:
-      - ./:/app
-      - /Users/cameronfranz/NoSync/glove.6B:/app/data2
+      - /Users/cameronfranz/NoSync/glove.6B:/app/data
     environment:
       - FLASK_APP=app/main.py
       - FLASK_DEBUG=1

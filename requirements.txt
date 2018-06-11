@@ -1,6 +1,4 @@
+pymagnitude
 numpy
-torch
-torchvision
 tqdm
 sklearn
-scipy
