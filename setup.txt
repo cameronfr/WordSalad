@@ -44,3 +44,7 @@ yarn add less --dev
 # there's some sort of cache of / on client? server? (uwsgi?) inbetween? not refreshed with Ctrl-Cmdr-R. Prob because it's <1kb.
 # telling is that the cache is only for http, not https, so might be somewhere inbetween.
 # use the interface on GAE console to upload files to the GAE bucket easily.
+
+#Addendum
+
+Since GAE minimum is 40$ a month, am using a VM. Think good idea is to test using app engine, then once ready use the container it builds (search containers in dashboard) as the start container for an instance. Use Cloudflare for (faux?) HTTPS.

@@ -4,11 +4,12 @@ WORKDIR /app
 
 RUN apt-get update
 RUN apt-get -y install ca-certificates
+RUN python -m pip install --upgrade pip setuptools wheel
 COPY ./requirements.txt ./
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 RUN apt-get -y install unzip wget
-RUN pip3 install flask-cors
+RUN pip install flask-cors
 
 COPY ./static ./static
 COPY ./app ./app
@@ -21,6 +22,7 @@ ENV NGINX_WORKER_PROCESSES auto
 
 # ENV FLASK_DEBUG 1
 
-#for Google AppEngine
-ENV LISTEN_PORT 8080
-EXPOSE 8080
+#for Google AppEngine, 8080
+#for webserver, 80
+ENV LISTEN_PORT 80
+EXPOSE 80
